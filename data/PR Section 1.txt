@@ -1,0 +1,269 @@
+mission "PR Navy 1.1"
+	name "Republic Navy Visit"
+	description "Go to the site some navy officials think would be a good spot for a new navy base at <destination>."
+	autosave
+	cargo "Navy Base Blueprints" 1 1 1
+	passengers 4
+	landing
+	source "Mars"
+	destination "New Wales"
+	to offer
+		has "Player Rewards 1.2: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`As you land on Mars a group of Republic Navy officials approch your ship and ask you if you could take them to <destination>, "We will reward you well for your time".`
+			choice
+				`	"Sure, come aboard."`
+					goto good
+				`	"I have other things to take care of, can I come back later?"`
+					goto waitup
+				`	"Sorry I am not interested."`
+					goto bad
+			label good
+			`	"Good, thank you for your service."`
+				accept
+			label waitup
+			`	"Fine, but please do hurry this is very important."`
+				defer
+			label bad
+			`	"Sorry for taking your time."`
+				decline
+	
+	on complete
+		payment 250000
+		conversation
+			`	You land at <destination>, and the officials as promised reward you with 250,000 credits.`
+			`	(Return to Mars for another mission)`
+
+mission "PR Navy 1.2"
+	name "Republic Navy Visit 2"
+	description "These officials want to visit <destination> to ensure things are going well."
+	autosave
+	passengers 5
+	landing
+	source "Mars"
+	destination "New Boston"
+	to offer
+		has "PR Navy 1.1: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	A group of Republic Officials would like to visit <destination> to check up on things, "Will you take us captain?"`
+			choice
+				`	"Ok"`
+					accept
+				`	"Wait one minute, I have something else to do."`
+					goto waitup
+				`	"Sorry I am not interested."`
+					decline
+			label waitup
+			`	"Please hurry, we need to ensure things are going well as soon as possible."`
+				defer
+	
+	on complete
+		payment 500000
+		conversation
+			`	As soon as you land at <destination>, the officals walk off... one of them returns to give you 500,000 credits.`
+			`	(Return to Mars for another mission)`
+
+mission "PR Navy 1.3"
+	name "Republic Navy Visit 3"
+	description "A few officials want to visit <destination> for a meeting."
+	autosave
+	passengers 3
+	landing
+	source "Mars"
+	destination "New Sahara"
+	to offer
+		has "PR Navy 1.2: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	A few Republic Officials need to reach <destination> for a meeting, "Can you take us there?"`
+			choice
+				`	"Sure"`
+					accept
+				`	"I need to take care of something first"`
+					goto waitup
+				`	"Sorry I am too busy."`
+					goto bad
+			label waitup
+			`	"Our meeting is soon so you need to make haste."`
+				defer
+			label bad
+			`	"Sorry to bother you."`
+				decline
+	
+	on complete
+		payment 750000
+		conversation
+			`	As you land at <destination>, the officals thank you and give you 750,000 credits as payment`
+			`	(Return to Mars for another mission)`
+
+mission "PR Navy 1.4"
+	name "Republic Navy Visit 4"
+	description "Some Navy Officials want to visit <destination> for a check up."
+	autosave
+	passengers 5
+	landing
+	source "Mars"
+	destination "Ingot"
+	to offer
+		has "PR Navy 1.3: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	Some Navy Officials want to go to <destination> for a checkup, "Will you take us?"`
+			choice
+				`	"Okay"`
+					accept
+				`	"I got something else at the moment."`
+					defer
+				`	"I am afraid I can't."`
+					decline
+	
+	on complete
+		payment 1000000
+		conversation
+			`	As you touch the ground the officials wander off, one of them turns to you and gives you 1,000,000 credits as payment`
+			`	(Return to Mars for another mission)`
+
+mission "PR Navy 1.5"
+	name "Republic Navy Visit 5"
+	description "Some Navy Officials want to visit <destination> for a Syndicate and Republic Navy meet up."
+	autosave
+	passengers 4
+	landing
+	source "Mars"
+	destination "Reunion"
+	to offer
+		has "PR Navy 1.4: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	Some Navy Officials want to go to <destination> for a meet up, "Will you take us?"`
+			choice
+				`	"Sure"`
+					accept
+				`	"I need to take care of something right now."`
+					defer
+				`	"I am sorry, I can't."`
+					decline
+	
+	on complete
+		payment 1250000
+		conversation
+			`	As you touch the ground the officials wander off, one of them turns to you and gives you 1,250,000 credits as payment`
+			`	(Return to Mars for another mission)`
+
+mission "PR Navy 1.6"
+	name "Republic Navy Visit 6"
+	description "A few Navy Officials want to visit <destination>, and they don't tell why."
+	autosave
+	passengers 2
+	landing
+	source "Mars"
+	destination "Luna"
+	to offer
+		has "PR Navy 1.5: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	A few Navy Officials want to visit <destination>, "Can you take us there?"`
+			choice
+				`	"Fine"`
+					accept
+				`	"I got somewhere else to be right now."`
+					defer
+				`	"Sorry, no."`
+					decline
+	
+	on complete
+		payment 1500000
+		conversation
+			`	As you touch the ground the officials wander off, one of them turns to you and gives you 1,500,000 credits as payment`
+
+mission "Player Rewards 1.1"
+	name "Player Rewards Salary"
+	description "Go to <destination> to claim your prize of 25,000 credits per day."
+	autosave
+	landing
+	source "New Boston"
+	destination "Earth"
+	to offer
+		or
+			has "Intro [0]: offered"
+			has "Intro [0]: declined"
+			has "Intro [0]: completed"
+	on fail
+		dialog `Failed Player Rewards Salary, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	Congrats <first> you have won a special lottery prize of 25,000 credits per day for life, go to <destination>.`
+			choice
+				`	"I am heading there now!"`
+					accept
+				`	"I will head there soon."`
+					defer
+	
+	on complete
+		"salary: Player Rewards" = 25000
+		conversation
+			`	Enjoy your 25,000 credits per day.`
+			`	(Head back to New Boston to earn all the licenses)`
+		log "Won 25,000 credits per day."
+
+mission "Player Rewards 1.2"
+	name "Player Rewards Licenses"
+	description "Go to <destination> to get a set of 'official' licenses made."
+	autosave
+	landing
+	source "New Boston"
+	destination "Mars"
+	to offer
+		has "Player Rewards 1.1: done"
+	on fail
+		dialog `Failed Player Rewards Licenses, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	Head to <destination> for a set of 'official' licenses made.`
+			choice
+				`	"Will do"`
+					accept
+				`	"I will be there after this other mission."`
+					defer
+	
+	on complete
+		set "license: City-Ship"
+		set "license: Coalition"
+		set "license: Heliarch"
+		set "license: Militia"
+		set "license: Navy Carrier"
+		set "license: Navy Cruiser"
+		set "license: Navy Auxiliary"
+		set "license: Navy"
+		set "license: Remnant Capital"
+		set "license: Remnant"
+		set "license: Unfettered Militia"
+		set "license: Wanderer"
+		set "license: Wanderer Military"
+		set "license: Wanderer Outfits"
+		payment 25000
+		conversation
+			`	You pickup your package and equip the licenses into your profile.`
+		log "Obtained many Licenses."
