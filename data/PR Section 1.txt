@@ -196,6 +196,64 @@ mission "PR Navy 1.6"
 		conversation
 			`	As you touch the ground the officials wander off, one of them turns to you and gives you 1,500,000 credits as payment`
 
+name "Republic Navy Visit 7"
+	description "A few Navy Officials want to visit <destination>"
+	autosave
+	passengers 4
+	landing
+	source "Luna"
+	destination "New China"
+	to offer
+		has "PR Navy 1.6: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	A few Navy Officials want to visit <destination>, "Can you take us there?"`
+			choice
+				`	"Fine"`
+					accept
+				`	"I got somewhere else to be right now."`
+					defer
+				`	"Sorry, no."`
+					decline
+	
+	on complete
+		payment 2500000
+		conversation
+			`	As soon as you land 3 of them wander off quickly, the 4th hands you a credit chip for 2,500,000 credits.`
+			`	(Return to Luna for another mission)`
+
+name "Republic Navy Visit 8"
+	description "The Navy need to transport 18 troopers and 4 officers to <destination>"
+	autosave
+	passengers 22
+	landing
+	source "Luna"
+	destination "Reunion"
+	to offer
+		has "PR Navy 1.6: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	A officer walks up to you as you power down your ship, "Could you transport me and my men to <destination>?"`
+			choice
+				`	"Ok"`
+					accept
+				`	"I got somewhere else to be right now."`
+					defer
+				`	"Sorry, no."`
+					decline
+	
+	on complete
+		payment 5000000
+		conversation
+			`	As soon as you land 3 of them wander off quickly, the 4th hands you a credit chip for 5,000,000 credits.`
+			`	(Return to Luna for another mission)`
+
 mission "Player Rewards 1.1"
 	name "Player Rewards Salary"
 	description "Go to <destination> to claim your prize of 25,000 credits per day."
@@ -249,20 +307,22 @@ mission "Player Rewards 1.2"
 					defer
 	
 	on complete
+		set "all licenses"
 		set "license: City-Ship"
 		set "license: Coalition"
+		set "license: Hai Trust"
 		set "license: Heliarch"
 		set "license: Militia"
+		set "license: Navy Auxiliary"
 		set "license: Navy Carrier"
 		set "license: Navy Cruiser"
-		set "license: Navy Auxiliary"
 		set "license: Navy"
 		set "license: Remnant Capital"
 		set "license: Remnant"
 		set "license: Unfettered Militia"
-		set "license: Wanderer"
 		set "license: Wanderer Military"
 		set "license: Wanderer Outfits"
+		set "license: Wanderer"
 		payment 25000
 		conversation
 			`	You pickup your package and equip the licenses into your profile.`
