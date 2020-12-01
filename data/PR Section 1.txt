@@ -233,7 +233,7 @@ name "Republic Navy Visit 8"
 	source "Luna"
 	destination "Reunion"
 	to offer
-		has "PR Navy 1.6: done"
+		has "PR Navy 1.7: done"
 	on fail
 		dialog `Failed Navy Visit, Use a save to continue the mission.`
 	
@@ -253,6 +253,35 @@ name "Republic Navy Visit 8"
 		conversation
 			`	As soon as you land 3 of them wander off quickly, the 4th hands you a credit chip for 5,000,000 credits.`
 			`	(Return to Luna for another mission)`
+
+name "Republic Navy Visit 9"
+	description "The Navy need to transport 1 officer to <destination>"
+	autosave
+	passengers 1
+	landing
+	source "Luna"
+	destination "Hestia"
+	to offer
+		has "PR Navy 1.8: done"
+	on fail
+		dialog `Failed Navy Visit, Use a save to continue the mission.`
+	
+	on offer
+		conversation
+			`	A officer walks up to you as you power down your ship, "Could you transport me to <destination>?"`
+			choice
+				`	"Sure"`
+					accept
+				`	"I got somewhere else to be right now."`
+					defer
+				`	"Sorry, no."`
+					decline
+	
+	on complete
+		payment 6000000
+		conversation
+			`	As soon as you land he hands you a credit chip for 6,000,000 credits, and wanders off.`
+			`	(Congrats you have completed my missions I have so far... please wait for more updates for more missions)`
 
 mission "Player Rewards 1.1"
 	name "Player Rewards Salary"
